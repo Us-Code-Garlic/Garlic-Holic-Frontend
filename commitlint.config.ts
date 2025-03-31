@@ -5,7 +5,8 @@ const Configuration: UserConfig = {
   extends: ["@commitlint/config-conventional"],
   parserPreset:{
     parserOpts:{
-        headerPattern: "^\\[([a-z]+)\\]: .+$",
+        headerPattern: "^\\[([a-z]+)\\]: (.+)$",
+        headerCorrespondence: ["type", "subject"],
     },
     },
   formatter: "@commitlint/format",
