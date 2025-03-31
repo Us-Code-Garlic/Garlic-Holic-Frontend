@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "echo \"테스트 스크립트가 아직 설정되지 않았습니다.\" && exit 0",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@svgr/webpack": "^8.1.0",
@@ -15,6 +17,8 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
@@ -24,6 +28,7 @@
     "eslint-config-next": "15.2.4",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.5",
+    "husky": "^9.1.7",
     "postcss": "^8.5.3",
     "tailwindcss": "^4",
     "typescript": "^5"
