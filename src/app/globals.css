@@ -5,6 +5,11 @@
   --foreground: #171717;
 }
 
+@theme {
+  --color-primary: #B59779;
+  --color-secondary: #DAD4CD;
+  --color-gray1: #444241;
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -16,6 +21,7 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --color-primary: #B59779;
   }
 }
 
@@ -23,4 +29,20 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* 스크롤바 숨기기 (웹킷 브라우저) */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Firefox에서 스크롤바 숨기기 */
+html {
+  scrollbar-width: none;
+}
+
+/* 모바일에서 스크롤 부드럽게 */
+* {
+  -webkit-overflow-scrolling: touch;
 }

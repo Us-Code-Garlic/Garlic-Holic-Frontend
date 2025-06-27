@@ -66,7 +66,7 @@ export default function Home() {
 
     try {
       const res = await fetch(
-        'http://172.30.121.12:8080/api/upload-audio',
+        `${process.env.NEXT_PUBLIC_API_URL}/upload-audio`,
         { method: 'POST', body: data }
       );
       const text = await res.text();
