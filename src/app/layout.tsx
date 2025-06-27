@@ -4,6 +4,7 @@ import "./globals.css";
 import ReportModal from './components/ReportModal';
 import { Metadata } from "next";
 import Navbar from "./components/Navbar";
+import ImagePreloader from './components/ImagePreloader';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <ImagePreloader />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >    

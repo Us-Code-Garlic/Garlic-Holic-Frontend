@@ -19,7 +19,7 @@ export default function MedicationCard({ notification }: MedicationCardProps) {
       iconType="notification"
       title={notification.title}
       description={notification.description}
-      className="bg-white hover:bg-blue-50 transition-colors cursor-pointer"
+      className="bg-white hover:bg-blue-50 transition-colors cursor-pointer border-primary"
       onClick={handleClick}
     />
   );

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
 
+import NotificationIcon from '/public/icons/Notification.svg';
 // NavBar 설정 타입 정의
 interface NavBarConfig {
   left?: ReactNode;
@@ -23,13 +24,7 @@ const BackButton = ({ href }: { href: string }) => (
 const HomeIcons = () => (
   <div className="flex items-center gap-4">
     <Link href="/notifications">
-      <Image
-        src="/icons/Notification.svg"
-        alt="알림"
-        width={36}
-        height={36}
-        className="cursor-pointer"
-      />
+   <NotificationIcon width={36} height={36} className="cursor-pointer text-primary" />
     </Link>
     <Link href="/settings">
       <Image

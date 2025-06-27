@@ -1,4 +1,4 @@
-import { DailyReportResponse } from './types';
+import { DailyReportResponse } from './types.js';
 
 export const getDailyReport = async (reportId: string): Promise<DailyReportResponse> => {
   try {
