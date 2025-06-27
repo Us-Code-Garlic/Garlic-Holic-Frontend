@@ -1,4 +1,13 @@
 import Image from 'next/image';
+'use client';
+import React, { useRef, useState } from 'react';
+
+declare global {
+  interface Window {
+    SpeechRecognition: any;
+    webkitSpeechRecognition: any;
+  }
+}
 
 export default function Home() {
   return (

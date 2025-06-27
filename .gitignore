@@ -40,3 +40,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# SSH key
+id_rsa
+id_rsa.pub
+
+# 인증서/키 파일
+*.pem
+*.key
+
+# 환경변수 파일
+.env
+.env.local
