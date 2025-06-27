@@ -3,7 +3,6 @@
 // import Link from 'next/link';
 import { notifications, Notification } from './data';
 import NotificationCard from './NotificationCard';
-import ReportModal from '../../components/ReportModal';
 
 // 날짜별로 알림을 그룹화하는 함수
 const groupNotificationsByDate = (notifications: Notification[]) => {
@@ -41,23 +40,20 @@ const NotificationsPage = () => {
   const sortedDates = Object.keys(groupedNotifications).sort((a, b) => new Date(b).getTime() - new Date(a).getTime());
 
   return (
-    <>
-      <div className="bg-transparent min-h-screen font-sans text-[#432D27]">
-        <div className="p-4">
-          {sortedDates.map((date) => (
-            <div key={date} className="mb-6">
-              <h2 className="text-lg font-semibold mb-3">{formatDateLabel(date)}</h2>
-              <div className="space-y-3">
-                {groupedNotifications[date].map((notification) => (
-                  <NotificationCard key={notification.id} notification={notification} />
-                ))}
-              </div>
+    <div className="bg-transparent min-h-screen font-sans text-[#432D27]">
+      <div className="p-4">
+        {sortedDates.map((date) => (
+          <div key={date} className="mb-6">
+            <h2 className="text-lg font-semibold mb-3">{formatDateLabel(date)}</h2>
+            <div className="space-y-3">
+              {groupedNotifications[date].map((notification) => (
+                <NotificationCard key={notification.id} notification={notification} />
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-      <ReportModal />
-    </>
+    </div>
   );
 };
 

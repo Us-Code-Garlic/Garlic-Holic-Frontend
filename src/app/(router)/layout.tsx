@@ -1,5 +1,6 @@
 'use client';
 
+import Navbar from '../components/Navbar';
 
 export default function RouterLayout({
   children,
@@ -8,7 +9,9 @@ export default function RouterLayout({
 }) {
   return (
     <>
-      <main className="w-full flex-1 overflow-y-auto">{children}</main>
+      <main className="w-full flex-1 overflow-y-auto">
+        {children}
+      </main>
     </>
   );
 } 

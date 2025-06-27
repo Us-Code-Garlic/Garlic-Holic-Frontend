@@ -18,17 +18,20 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
     [onClose]
   );
 
-  // 모달이 열렸을 때 body 스크롤 방지
+  // 메인 레이아웃 컨테이너의 스크롤 제어
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
+    const mainLayout = document.getElementById('main-layout');
+    
+    if (isOpen && mainLayout) {
+      mainLayout.style.overflow = 'hidden';
+    } else if (mainLayout) {
+      mainLayout.style.overflow = 'unset';
     }
 
-    // 컴포넌트 언마운트 시 스크롤 복원
     return () => {
-      document.body.style.overflow = 'unset';
+      if (mainLayout) {
+        mainLayout.style.overflow = 'unset';
+      }
     };
   }, [isOpen]);
 
@@ -36,7 +39,7 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4 overflow-hidden"
+      className="absolute inset-0 z-50 bg-black/50 flex items-center justify-center p-4"
       onClick={onClick}
     >
       <div className="bg-white rounded-2xl max-w-sm w-full shadow-xl max-h-[90vh] overflow-y-auto">
