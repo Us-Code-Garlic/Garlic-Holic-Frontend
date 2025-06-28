@@ -5,7 +5,7 @@ import { NotificationType } from '../../(router)/notifications/data';
 
 // SVG 컴포넌트 import
 import NotificationIcon from '/public/icons/Notification.svg';
-import FileIcon from '/public/file.svg';
+import FileIcon from '../../../../public/file.svg';
 
 // 아이콘 매핑
 const iconMap: Record<string, ComponentType<SVGProps<SVGElement>>> = {

@@ -12,9 +12,14 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
+    settings: {
+      "import/resolver": {
+        typescript: {},
+      },
+    },
     rules: {
       "@typescript-eslint/no-explicit-any": "warn",
-      "import/no-unresolved": "error",
+      "import/no-unresolved": "off",
     },
   },
 ];

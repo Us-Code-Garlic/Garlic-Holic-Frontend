@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import Modal from './Modal';
 import useModalStore from '../store/modalStore';
 import { getDailyReportMock } from '../services/report';
+import { convertTextToSpeech, speakTextBrowser } from '../services/textToSpeech';
 
 export default function ReportModal() {
   const { 
@@ -50,7 +51,7 @@ export default function ReportModal() {
         
         {isLoading && (
           <div className="text-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#B59779] mx-auto"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
             <p className="mt-2 text-gray-600">리포트를 불러오는 중...</p>
           </div>
         )}
@@ -73,14 +74,14 @@ export default function ReportModal() {
             <div>• 인지 퀴즈 점수: ⭐ {reportData.cognitionTest.score}/{reportData.cognitionTest.totalScore}</div>
             <div>⚠️ 오늘의 메모</div>
             <div className="text-gray-600">
-              "{reportData.memo}"
+                            &quot;{reportData.memo}&quot;
             </div>
           </div>
         )}
-
+  <button onClick={() => speakTextBrowser("안녕하세요")}>음성 재생</button>
         <button
           onClick={closeModal}
-          className="w-full mt-6 py-3 bg-[#B59779] text-white rounded-lg font-medium"
+          className="w-full mt-6 py-3 bg-primary text-white rounded-lg font-medium"
           disabled={isLoading}
         >
           확인

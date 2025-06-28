@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
 
-import NotificationIcon from '/public/icons/Notification.svg';
+import NotificationIcon from '@/../public/icons/Notification.svg';
 // NavBar 설정 타입 정의
 interface NavBarConfig {
   left?: ReactNode;
@@ -43,15 +43,7 @@ const PageTitle = ({ title }: { title: string }) => (
   <h1 className="text-xl font-bold">{title}</h1>
 );
 
-// 텍스트 버튼 컴포넌트
-const TextButton = ({ text, onClick }: { text: string; onClick?: () => void }) => (
-  <button 
-    className="text-sm text-gray-500" 
-    onClick={onClick}
-  >
-    {text}
-  </button>
-);
+
 
 // 빈 공간 컴포넌트
 const EmptySpace = () => <div></div>;

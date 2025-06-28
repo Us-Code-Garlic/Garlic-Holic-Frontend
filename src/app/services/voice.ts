@@ -21,7 +21,7 @@ export const postVoice = async (blob: Blob): Promise<any> => {
   try {
     console.log('Requesting to:', `${apiUrl}/upload-audio`);
     const res = await fetch(
-      `${apiUrl}/upload-audio`,
+      `${apiUrl}/voice-chat`,
       {
         method: 'POST',
         body: data,

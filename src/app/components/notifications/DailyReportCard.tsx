@@ -3,7 +3,7 @@
 import BaseCard from './BaseCard';
 import useModalStore from '../../store/modalStore';
 import { Notification } from '../../(router)/notifications/data';
-import ArrowRightIcon from '/public/icons/ArrowRight.svg';
+import ArrowRightIcon from '@/../public/icons/ArrowRight.svg';
 
 interface DailyReportCardProps {
   notification: Notification;
