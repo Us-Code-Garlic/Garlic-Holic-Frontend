@@ -36,7 +36,7 @@ export default function RootLayout({
       >    
         <div className='h-screen'>
           <div 
-            className='bg-[#FCF8F5] max-w-[513px] flex flex-col mx-auto items-center h-full px-6 relative'
+            className='bg-[#FCF8F5] max-w-[513px] mih-w-[315px] flex flex-col mx-auto items-center h-screen px-6 relative'
             id="main-layout"
           ><Navbar/>
             {children}

@@ -1,9 +1,9 @@
-import type { UserConfig } from "@commitlint/types";
-import { RuleConfigSeverity } from "@commitlint/types";
+import type { UserConfig } from '@commitlint/types';
+import { RuleConfigSeverity } from '@commitlint/types';
 
 const Configuration: UserConfig = {
-  extends: ["@commitlint/config-conventional"],
-  parserPreset:{
+  extends: ['@commitlint/config-conventional'],
+  parserPreset: {
     parserOpts:{
         headerPattern: "^\\[([a-z]+)\\]: (.+)$",
         headerCorrespondence: ["type", "subject"],

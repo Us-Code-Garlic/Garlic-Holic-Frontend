@@ -19,7 +19,7 @@
 
 # production
 /build
-
+/key
 
 # misc
 .DS_Store

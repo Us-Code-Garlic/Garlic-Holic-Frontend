@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import useAudioStore from '../store/audioStore';
 import { postVoice } from '../services/voice';
-import { speakTextBrowser, speakTextGoogleTTS } from '../services/textToSpeech';
+import { speakTextGoogleTTS } from '../services/textToSpeech';
 
 declare global {
   interface Window {
@@ -27,7 +27,6 @@ export const useAudioRecorder = () => {
       console.log(response);
       if (response.success) {
         const answer = response.success.answer;
-        const isDementia = response.success.isDementia;
         speakTextGoogleTTS(answer)
       } else {
         alert(`에러: ${response.error?.message || '알 수 없는 오류'}`);

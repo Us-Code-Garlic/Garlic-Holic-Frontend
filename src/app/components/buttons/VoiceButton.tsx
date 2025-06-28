@@ -21,17 +21,16 @@ export default function VoiceButton({ activeTab, setActiveTab }: VoiceButtonProp
         setActiveTab(tabId);
         toggleRecording();
       }}
-      className={`flex flex-col items-center justify-center rounded-full cursor-pointer py-4 px-4 transition-all duration-300 ease-in-out ${
+      className={`flex flex-col w-24 h-24 relative items-center justify-center rounded-full cursor-pointer transition-all duration-300 ease-in-out ${
         isRecording ? 'bg-red-500' : 'bg-primary'
       } shadow-lg hover:shadow-2xl hover:shadow-primary/60 hover:scale-105 hover:text-white transform`}
     >
       <Image
         src={icon}
         alt={label}
-        width={24}
-        height={24}
-        className={`${
-          activeTab === tabId ? 'opacity-100 filter brightness-0 invert' : 'opacity-60 filter brightness-0 invert'
+        fill
+        className={`${"py-4 px-4"}
+         ${activeTab === tabId ? 'opacity-100 filter brightness-0 invert' : 'opacity-60 filter brightness-0 invert'
         }`}
       />
     </button>

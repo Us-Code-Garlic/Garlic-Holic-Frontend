@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  nextjs-starter:
+    image: .
+    container_name: nextjs-starter
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://43.200.179.245:8080
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/keys/google-cloud-key.json
+    volumes:
+      # Windows 절대 경로 수정 (실제 키 파일 경로로 변경하세요)
+      - /c/Users/YJ/key/sinuous-axiom-464220-u8-2c4a1c01cf61.json:/app/keys/google-cloud-key.json:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

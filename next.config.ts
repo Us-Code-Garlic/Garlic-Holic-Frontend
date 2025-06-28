@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Docker를 위한 standalone 모드 추가
+  output: 'standalone',
+  
   webpack: (config) => {
     const fileLoaderRule = config.module.rules.find((rule: any) => rule.test?.test?.('.svg'));
 

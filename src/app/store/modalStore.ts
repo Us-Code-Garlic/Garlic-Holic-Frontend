@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import { DailyReportResponse } from '../services/types';
 import { ReportData } from '../(router)/notifications/data';
 
 interface ModalState {

@@ -69,7 +69,8 @@ export default function Home() {
         `${process.env.NEXT_PUBLIC_API_URL}/uvoice-chat`,
         { method: 'POST', body: data }
       );
-      const text = await res.text();
+      // 응답 처리는 필요에 따라 나중에 구현
+      console.log('업로드 완료', res.status);
     } catch (e) {
       console.error(e);
       alert('업로드 실패');

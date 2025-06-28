@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import textToSpeech from '@google-cloud/text-to-speech';
 
-// Google Cloud 인증 설정
-process.env.GOOGLE_APPLICATION_CREDENTIALS = 'C://Users/YJ/key/sinuous-axiom-464220-u8-2c4a1c01cf61.json';
+// Docker 환경에서 환경변수로 키 파일 경로 설정
+const credentialsPath = process.env.GOOGLE_APPLICATION_CREDENTIALS || '/app/keys/google-cloud-key.json';
+process.env.GOOGLE_APPLICATION_CREDENTIALS = credentialsPath;
 
 // 클라이언트 생성
 const client = new textToSpeech.TextToSpeechClient();

@@ -11,7 +11,7 @@ import useToastStore from '../../store/toastStore';
 
 // 더미 데이터
 const patientData: PatientInfo = {
-  name: '희연',
+  name: '강예정',
   age: 79,
   height: 168,
   weight: 55,

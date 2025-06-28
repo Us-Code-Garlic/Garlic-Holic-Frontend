@@ -36,6 +36,9 @@ importers:
       '@commitlint/config-conventional':
         specifier: ^19.8.0
         version: 19.8.1
+      '@commitlint/types':
+        specifier: ^19.8.1
+        version: 19.8.1
       '@eslint/eslintrc':
         specifier: ^3
         version: 3.3.1

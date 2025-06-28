@@ -9,8 +9,13 @@ export default function BottomTabBar() {
   const isLoading = useAudioStore((state) => state.isLoading);
 
   return (
-    <div className="w-full h-[60px] bg-transparent text-white  left-0 right-0 px-4 py-2 mb-18">
-      <div className="flex items-center justify-around max-w-md mx-auto">
+    <div className="w-full bg-transparent text-white left-0 right-0 px-4 py-2 mb-2 sm:mb-4 md:mb-8">
+      <div 
+        className="flex items-center justify-around max-w-md mx-auto"
+        style={{
+          height: 'min(120px, 15vh)' // 높이에 따라 동적 조절
+        }}
+      >
         {isLoading ? (
           <CallButton activeTab={activeTab} setActiveTab={setActiveTab} />
         ) : (

@@ -93,7 +93,7 @@ export const getDailyReportMock = async (reportId: string): Promise<DailyReportR
     data: {
       id: reportId,
       date: '2025.06.29',
-      patientName: '희연',
+      patientName: '강예정',
       mood: {
         emoji: '😊',
         status: '좋음'

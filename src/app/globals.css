@@ -126,3 +126,19 @@ html {
 .animate-slide-in-right {
   animation: slide-in-right 0.3s ease-out;
 }
+
+@media (max-height: 600px) {
+  .btn-small-height {
+    width: 48px !important;
+    height: 48px !important;
+    padding: 8px !important;
+  }
+}
+
+@media (max-height: 500px) {
+  .btn-very-small-height {
+    width: 40px !important;
+    height: 40px !important;
+    padding: 6px !important;
+  }
+}

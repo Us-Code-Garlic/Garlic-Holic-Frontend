@@ -1,11 +1,11 @@
 'use client';
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BottomTabBar from './components/BottomTabBar';
 import useAudioStore from './store/audioStore';
 import OnboardingScreen from './components/OnboardingScreen';
 import MedicationModal from './components/MedicationModal';
-import { speakText, speakTextBrowser, speakTextGoogleTTS, stopSpeech } from './services/textToSpeech';
+import { speakText, speakTextBrowser } from './services/textToSpeech';
 
 declare global {
   interface Window {
@@ -81,11 +81,11 @@ export default function Home() {
     
     // 랜덤 인사말
     const greetings = [
-      "안녕하세요 희연님! 저는 누리예요~",
+      "안녕하세요 예정님! 저는 누리예요~",
       "오늘도 건강한 하루 보내세요!",
-      "누리가 언제나 희연님과 함께할게요!",
+      "누리가 언제나 예정님과 함께할게요!",
       "기분이 어떠세요? 언제든 말씀해주세요!",
-      "희연님의 건강을 누리가 지켜드릴게요!"
+      "예정님의 건강을 누리가 지켜드릴게요!"
     ];
     
     const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
@@ -93,7 +93,7 @@ export default function Home() {
     // 음성 재생 (Google TTS 우선, 실패시 브라우저 TTS)
     try {
       await speakText(randomGreeting, true);
-    } catch (error) {
+    } catch {
       console.log('음성 재생 실패, 브라우저 TTS로 재시도');
       speakTextBrowser(randomGreeting);
     }
@@ -107,10 +107,10 @@ export default function Home() {
         break;
       case 'mood':
         // 누리의 기분 대답
-        const moodText = "저는 언제나 기분이 좋아요, 희연님은요?";
+        const moodText = "저는 언제나 기분이 좋아요, 예정님은요?";
         try {
           await speakText(moodText, true);
-        } catch (error) {
+        } catch {
           console.log('음성 재생 실패, 브라우저 TTS로 재시도');
           speakTextBrowser(moodText);
         }
@@ -132,8 +132,8 @@ export default function Home() {
 
   return (
     <div className='h-full flex flex-col items-center w-full justify-center'>
-      <div className='min-h-[500px] h-full flex-1 flex flex-col items-center w-full justify-center'>
-          <div className="w-[48px] h-[48px] mb-12 relative">
+      <div className='h-full flex flex-col items-center w-full justify-center'>
+          <div className="w-[48px] h-[48px] mb-8 relative">
             <Image
               src={isLoading ? '/icons/Loader.svg' : '/icons/Volume_up.svg'}
               alt={isLoading ? '로딩 중' : '볼륨'}
@@ -141,27 +141,22 @@ export default function Home() {
               className={`object-contain ${isLoading ? 'animate-spin' : ''}`}
               onClick={() => setShowVoiceTest(!showVoiceTest)}
             />
-            </div>
-            <div className="flex w-75 h-75 justify-center items-center" >
+          </div>
+            <div className="flex w-75 h-75 justify-center items-center relative float-bounce-animation" >
             {isLoading ? (
-              <div className="float-bounce-animation">
-                <Image src='/graphic/graphic_loading.svg' loading='eager' alt='느리_2' width={300} height={300} />
-              </div>
+                <Image src='/graphic/graphic_loading.svg'  fill  loading='eager' alt='느리_2' />
             ) : (
-              <div className="float-gentle-animation">
                 <Image 
                   src={randomImage} 
                   loading='eager' 
                   alt='누리' 
-                  width={300} 
-                  height={300}
+             fill
                   className="cursor-pointer transition-all duration-300 hover:scale-110"
                   onClick={handleNuriClick}
                 />
-              </div>
             )}
            </div>
-        {isLoading?<div className='px-[24px] py-[10px] w-full'>
+        {isLoading? <div className='px-[24px] py-[10px] w-full'>
           <div className='bg-white p-[24px] border border-primary rounded-xl flex justify-center items-center'>
             <span className='block text-2xl'>느리가 생각하고 있어요~</span>
           </div>
@@ -171,7 +166,7 @@ export default function Home() {
             return (
               <div
                 key={item.title}
-                className="text-[20px] p-[12px] text-gray1 bg-secondary rounded-xl inline-block shrink-0 cursor-pointer transition-all duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-secondary/50 hover:scale-105 hover:-translate-y-1 transform"
+                className="text-[20px] p-[12px] text-gray1 bg-secondary rounded-xl  cursor-pointer transition-all duration-300 ease-in-out shadow-md hover:shadow-lg hover:shadow-secondary/50 hover:scale-105 hover:-translate-y-1 transform whitespace-nowrap"
                 onClick={() => handleMenuClick(item)}
               >
                 {item.title}

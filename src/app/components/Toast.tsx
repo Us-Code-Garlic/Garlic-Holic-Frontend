@@ -1,5 +1,4 @@
 'use client';
-import { useEffect } from 'react';
 import useToastStore, { Toast } from '../store/toastStore';
 
 const ToastComponent = ({ toast }: { toast: Toast }) => {
