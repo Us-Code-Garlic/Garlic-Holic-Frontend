@@ -7,6 +7,8 @@ interface AudioState {
   setAudioUrl: (audioUrl: string | null) => void;
   isRecording: boolean;
   setIsRecording: (isRecording: boolean) => void;
+  recognizedText: string;
+  setRecognizedText: (text: string) => void;
 }
 
 const useAudioStore = create<AudioState>()(
@@ -17,6 +19,8 @@ const useAudioStore = create<AudioState>()(
     setAudioUrl: (audioUrl: string | null) => set({ audioUrl }),
     isRecording: false,
     setIsRecording: (isRecording: boolean) => set({ isRecording }),
+    recognizedText: '',
+    setRecognizedText: (text: string) => set({ recognizedText: text }),
   }))
 );
 

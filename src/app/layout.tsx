@@ -1,10 +1,10 @@
-
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ReportModal from './components/ReportModal';
 import { Metadata } from "next";
 import Navbar from "./components/Navbar";
 import ImagePreloader from './components/ImagePreloader';
+import ToastContainer from './components/Toast';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,6 +41,7 @@ export default function RootLayout({
           ><Navbar/>
             {children}
             <ReportModal />
+            <ToastContainer />
           </div>
         </div>
       </body>

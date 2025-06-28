@@ -23,10 +23,10 @@ export default function CaregiverCard({ caregiver, onEdit, onDelete }: Caregiver
       <div className="flex items-center">
         <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mr-4">
           <Image 
-            src="/icons/Setting.svg" 
+            src="/graphic/icon_avatar02.svg" 
             alt="보호자" 
-            width={20} 
-            height={20}
+            width={48} 
+            height={48}
           />
         </div>
         <div className="flex-1">

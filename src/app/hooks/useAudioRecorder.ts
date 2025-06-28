@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import useAudioStore from '../store/audioStore';
 import { postVoice } from '../services/voice';
+import { speakTextBrowser, speakTextGoogleTTS } from '../services/textToSpeech';
 
 declare global {
   interface Window {
@@ -13,7 +14,8 @@ export const useAudioRecorder = () => {
   const recognitionRef = useRef<any>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
-  const { setIsLoading, setAudioUrl, isRecording, setIsRecording } = useAudioStore();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const { setIsLoading, setAudioUrl, isRecording, setIsRecording, setRecognizedText } = useAudioStore();
 
   const uploadAudio = async () => {
     const blob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
@@ -24,7 +26,9 @@ export const useAudioRecorder = () => {
       const response = await postVoice(blob);
       console.log(response);
       if (response.success) {
-        alert(`결과: ${response.success.answer}`);
+        const answer = response.success.answer;
+        const isDementia = response.success.isDementia;
+        speakTextGoogleTTS(answer)
       } else {
         alert(`에러: ${response.error?.message || '알 수 없는 오류'}`);
       }
@@ -56,18 +60,33 @@ export const useAudioRecorder = () => {
       recog.lang = 'ko-KR';
       recog.interimResults = false;
       recog.onresult = (e: any) => {
-        console.log('인식:', e.results[0][0].transcript);
+        const transcript = e.results[0][0].transcript;
+        console.log('인식:', transcript);
+        setRecognizedText(transcript);
       };
       recog.onend = () => {
         mediaRecorderRef.current?.stop();
         setIsRecording(false);
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+          timeoutRef.current = null;
+        }
       };
       recog.onerror = () => {
         mediaRecorderRef.current?.stop();
         setIsRecording(false);
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+          timeoutRef.current = null;
+        }
       };
       recognitionRef.current = recog;
       recog.start();
+
+      timeoutRef.current = setTimeout(() => {
+        console.log('30초 타임아웃으로 녹음 자동 종료');
+        stopRecording();
+      }, 30000);
 
       setIsRecording(true);
     } catch (error) {
@@ -77,6 +96,11 @@ export const useAudioRecorder = () => {
   };
 
   const stopRecording = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    
     recognitionRef.current?.stop();
     mediaRecorderRef.current?.stop();
     setIsRecording(false);

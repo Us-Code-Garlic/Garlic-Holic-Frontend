@@ -66,11 +66,10 @@ export default function Home() {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/upload-audio`,
+        `${process.env.NEXT_PUBLIC_API_URL}/uvoice-chat`,
         { method: 'POST', body: data }
       );
       const text = await res.text();
-      alert(`결과: ${text}`);
     } catch (e) {
       console.error(e);
       alert('업로드 실패');

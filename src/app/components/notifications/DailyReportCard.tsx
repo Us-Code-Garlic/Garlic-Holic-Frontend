@@ -13,7 +13,11 @@ export default function DailyReportCard({ notification }: DailyReportCardProps) 
   const { openModal } = useModalStore();
 
   const handleClick = () => {
-    openModal(notification.id.toString());
+    if (notification.reportData) {
+      openModal(notification.id.toString(), notification.reportData);
+    } else {
+      openModal(notification.id.toString());
+    }
   };
 
   return (

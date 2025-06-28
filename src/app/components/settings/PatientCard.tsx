@@ -15,7 +15,7 @@ export default function PatientCard({ patient, onEdit }: PatientCardProps) {
         <div>
           <h3 className="font-bold text-lg mb-2">{patient.name} 님 의료 정보</h3>
           <div className="text-sm text-gray-600 space-y-1">
-            <div>나이 : 이 {patient.age}세</div>
+            <div>나이 : {patient.age}세</div>
             <div>신장 : {patient.height}cm</div>
             <div>체중 : {patient.weight}kg</div>
             <div>혈액형 : {patient.bloodType}</div>
@@ -26,7 +26,7 @@ export default function PatientCard({ patient, onEdit }: PatientCardProps) {
           onClick={onEdit}
         >
           <Image 
-            src={patient.avatar || "/icons/ImageCircle.svg"} 
+            src={"/graphic/icon_avatar01.svg"} 
             alt="프로필" 
             width={80} 
             height={80}

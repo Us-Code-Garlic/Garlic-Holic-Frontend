@@ -1,9 +1,10 @@
 import { DailyReportResponse } from './types.js';
+import { NotificationApiResponse } from '../(router)/notifications/data';
 
-export const getDailyReport = async (reportId: string): Promise<DailyReportResponse> => {
+export const sendDailyReport = async (): Promise<number> => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/daily-reports/${reportId}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/mail?toEmail=1`,
       {
         method: 'GET',
         headers: {
@@ -12,22 +13,75 @@ export const getDailyReport = async (reportId: string): Promise<DailyReportRespo
       },
     );
 
+    console.log('API 응답 상태:', res.status);
+    
     if (!res.ok) {
-      throw new Error(`서버 응답 에러: ${res.status}`);
+      console.error(`서버 응답 에러: ${res.status}`);
+      return res.status; // 실제 상태 코드 반환
     }
-
-    const responseData: DailyReportResponse = await res.json();
-    return responseData;
+    
+    return res.status; // 성공 시에도 실제 상태 코드 반환
   } catch (e) {
-    console.error('일일 리포트 조회 실패:', e);
-    if (e instanceof Error) {
-      throw new Error(`일일 리포트 조회에 실패했습니다: ${e.message}`);
-    }
-    throw new Error('알 수 없는 오류로 일일 리포트 조회에 실패했습니다.');
+    console.error('일일 리포트 전송 실패:', e);
+    return 0; // 네트워크 에러 등의 경우 0 반환
   }
 };
 
-// 데모용 모킹 함수 (실제 API가 없을 때 사용)
+// 알림 데이터를 API에서 가져오는 함수
+export const getNotificationReports = async (): Promise<NotificationApiResponse | null> => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/report`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+
+    console.log('알림 데이터 API 응답 상태:', res.status);
+    
+    if (!res.ok) {
+      console.error(`서버 응답 에러: ${res.status}`);
+      return null;
+    }
+    
+    const data: NotificationApiResponse = await res.json();
+    return data;
+  } catch (e) {
+    console.error('알림 데이터 조회 실패:', e);
+    return null;
+  }
+};
+
+export const getDailyReport = async (): Promise<any> => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/report`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+
+    console.log('API 응답 상태:', res.status);
+    
+    if (!res.ok) {
+      console.error(`서버 응답 에러: ${res.status}`);
+      return res.status;
+    }
+    
+    const data = await res.json();
+    return data;
+  } catch (e) {
+    console.error('일일 리포트 조회 실패:', e);
+    return null;
+  }
+};
+
 export const getDailyReportMock = async (reportId: string): Promise<DailyReportResponse> => {
   // 실제 API 호출을 시뮬레이션하기 위한 지연
   await new Promise(resolve => setTimeout(resolve, 1000));
@@ -39,7 +93,7 @@ export const getDailyReportMock = async (reportId: string): Promise<DailyReportR
     data: {
       id: reportId,
       date: '2025.06.29',
-      patientName: '홍길동',
+      patientName: '희연',
       mood: {
         emoji: '😊',
         status: '좋음'
