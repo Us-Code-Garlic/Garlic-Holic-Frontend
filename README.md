@@ -1,4 +1,7 @@
 # [US:CODE 해커톤 우수상] 나마늘 기억해
+
+![image](https://github.com/user-attachments/assets/7c0c15d6-3480-4bb6-bfe8-b8144a6e2402)
+
 팀:갈릭홀릭 
 
 이 프로젝트는 의성군의 고령화로서 발생할 수 있는 문제를 해결하기 위해 고안된
@@ -15,7 +18,6 @@
 2. 동적인 느낌을 주기위해 애니메이션을 추가했습니다.
 3. 전반적인 UI를 구현하고 음성데이터를 변환해 백엔드와의 통신을 담당했습니다.
 
-![image](https://github.com/user-attachments/assets/7c0c15d6-3480-4bb6-bfe8-b8144a6e2402)
 
 ### 시연영상
 
