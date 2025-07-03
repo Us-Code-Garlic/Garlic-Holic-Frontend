@@ -18,6 +18,8 @@ MVP 구현:
 
 https://github.com/user-attachments/assets/9535b254-c61c-4619-b733-624f1dcfe088
 
+### 일일 리포트 결과
+![image](https://github.com/user-attachments/assets/bc443db5-85e7-4930-807a-66bea9b77100)
 
 ## 🚀 시작하기
 
